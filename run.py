@@ -29,6 +29,30 @@ st.set_page_config(page_title='Survey Results 2022')
 st.header('Survey Results 2022')
 st.subheader('Data Analysis At Your Fingertips')
 
+
+# Load the data from the spreadsheet into a Pandas dataframe
+excel_file = 'Survey_Results.xlsx'
+sheet_name = 'DATA'
+df = pd.read_excel(excel_file, sheet_name=sheet_name)
+
+# Select the columns to use in the scatter plot
+x = df['Unnamed: 1']
+y = df['Unnamed: 2']
+z = df['Unnamed: 3']
+
+# Create the scatter plot
+fig = px.scatter_3d(x=x, y=y, z=z)
+
+# Display the scatter plot in Streamlit
+st.plotly_chart(fig)
+
+# Add some formatted text to the page
+st.markdown('# Data Analysis Results')
+st.markdown('Here are the results of our data analysis:')
+st.markdown('**Total Number of Participants:** {}'.format(df.shape[0]))
+st.markdown('**Average Age:** {:.2f}'.format(df['Unnamed: 4'].mean()))
+print(df.columns)
+
 # --- LOAD THE DATAFRAME
 excel_file = 'Survey_Results.xlsx'
 sheet_name = 'DATA'
