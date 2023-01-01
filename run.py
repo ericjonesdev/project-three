@@ -84,3 +84,11 @@ col1.image(image,
         use_column_width=True)
 col2.dataframe(df[mask])
 
+# --- PLOT PIE CHART
+pie_chart = px.pie(df_participants,
+                title='Total No. of Participants',
+                values='Participants',
+                names='Departments')
+
+st.plotly_chart(pie_chart)
+
