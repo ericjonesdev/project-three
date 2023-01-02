@@ -4,6 +4,9 @@ import pandas as pd
 import streamlit as st 
 import plotly.express as px 
 from PIL import Image
+import os
+
+
 
 
 
@@ -120,4 +123,6 @@ pie_chart = px.pie(df_participants,
                 names='Departments')
 
 st.plotly_chart(pie_chart)
+
+
 
