@@ -7,7 +7,13 @@ from PIL import Image
 import os
 
 
+CREDS_FILE = os.getenv("CREDS_FILE")
 
+if CREDS_FILE:
+    CREDS = Credentials.from_service_account_file(CREDS_FILE)
+else:
+    # Handle the case where the CREDS_FILE environment variable is not set
+    pass
 
 
 # SET SCOPE FOR GOOGLE APIs
