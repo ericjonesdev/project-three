@@ -5,6 +5,8 @@ import streamlit as st
 import plotly.express as px 
 from PIL import Image
 
+
+
 # SET SCOPE FOR GOOGLE APIs
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -22,7 +24,7 @@ SHEET = GSPREAD_CLIENT.open('survey_results_sheet')
 survey = SHEET.worksheet('data')
 
 surveydata = survey.get_all_values()
-print(surveydata)
+
 
 #SET PAGE CONFIGURATION PARAMETERS FOR LOCAL GOOGLE SPREADSHEET FILE
 st.set_page_config(page_title='Survey Results 2022')
@@ -46,12 +48,15 @@ fig = px.scatter_3d(x=x, y=y, z=z)
 # Display the scatter plot in Streamlit
 st.plotly_chart(fig)
 
+
 # Add some formatted text to the page
 st.markdown('# Data Analysis Results')
 st.markdown('Here are the results of our data analysis:')
 st.markdown('**Total Number of Participants:** {}'.format(df.shape[0]))
-st.markdown('**Average Age:** {:.2f}'.format(df['Unnamed: 4'].mean()))
+most_popular_rating = df['Unnamed: 3'].mode()[0]
+st.markdown('The most popular rating is {}'.format(most_popular_rating))
 print(df.columns)
+
 
 # --- LOAD THE DATAFRAME
 excel_file = 'Survey_Results.xlsx'
