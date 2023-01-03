@@ -8,7 +8,7 @@ from PIL import Image
 
 
 
-CREDS_FILE = os.getenv("CREDS_FILE")
+CREDS_FILE = os.getenv("CREDS")
 
 if CREDS_FILE:
     CREDS = Credentials.from_service_account_file(CREDS_FILE)
